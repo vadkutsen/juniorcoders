@@ -1,4 +1,4 @@
-package com.vadkutsen.juniorcoders.controllers;
+package com.vadkutsen.juniorcoders.web.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
