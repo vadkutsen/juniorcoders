@@ -15,10 +15,10 @@
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${user.home}/logs/devopsbuddy/devopsbuddy.log</file>
+        <file>${user.home}/logs/juniorcoders/juniorcoders.log</file>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-            <fileNamePattern>${user.home}/logs/devopsbuddy/devopsbuddy.%i.log.zip</fileNamePattern>
+            <fileNamePattern>${user.home}/logs/juniorcoders/junoprcoders.%i.log.zip</fileNamePattern>
             <minIndex>1</minIndex>
             <maxIndex>3</maxIndex>
         </rollingPolicy>
@@ -31,13 +31,13 @@
         </encoder>
     </appender>
 
-    <logger name="com.devopsbuddy" level="debug" />
+    <logger name="com.vadkutsen.juniorcoders" level="debug" />
     <logger name="uk.co.jemos.podam" level="warn" />
     <logger name="org.springframework" level="info" />
     <logger name="org.hibernate" level="warn" />
     <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="warn" />
     <logger name="org.springframework.web" level="info" />
-    <logger name="org.springframework.security" level="warn" />
+    <logger name="org.springframework.security" level="debug" />
 
     <root level="warn">
         <appender-ref ref="CONSOLE" />
