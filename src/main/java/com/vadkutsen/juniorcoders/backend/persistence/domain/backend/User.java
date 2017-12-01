@@ -1,18 +1,22 @@
 package com.vadkutsen.juniorcoders.backend.persistence.domain.backend;
 
-        import org.hibernate.validator.constraints.Length;
-        import javax.persistence.*;
-        import java.io.Serializable;
-        import java.util.HashSet;
-        import java.util.Set;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-/**
- * Created by tedonema on 28/03/2016.
- */
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+
 @Entity
 public class User implements Serializable {
 
-    /** The Serial Version UID for Serializable classes. */
+    /**
+     * The Serial Version UID for Serializable classes.
+     */
     private static final long serialVersionUID = 1L;
 
 
@@ -59,8 +63,15 @@ public class User implements Serializable {
     private Plan plan;
 
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<UserRole> userRoles = new HashSet<>();
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "user"
+    )
+
 
     public long getId() {
         return id;
@@ -73,6 +84,7 @@ public class User implements Serializable {
     public String getUsername() {
         return username;
     }
+
 
     public void setUsername(String username) {
         this.username = username;
@@ -149,7 +161,6 @@ public class User implements Serializable {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-
 
 
     public String getPassword() {
