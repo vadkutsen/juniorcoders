@@ -1,5 +1,7 @@
 package com.vadkutsen.juniorcoders.backend.persistence.domain.backend;
 
+import com.vadkutsen.juniorcoders.enums.RolesEnum;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -26,6 +28,14 @@ public class Role implements Serializable {
 
     }
 
+    /**
+     * Full constructor.
+     * @param rolesEnum
+     */
+    public Role(RolesEnum rolesEnum) {
+        this.id = rolesEnum.getId();
+        this.name = rolesEnum.getRoleName();
+    }
 
     public int getId() {
         return id;

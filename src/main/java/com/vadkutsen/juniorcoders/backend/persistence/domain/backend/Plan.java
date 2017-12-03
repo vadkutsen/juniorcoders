@@ -1,5 +1,7 @@
 package com.vadkutsen.juniorcoders.backend.persistence.domain.backend;
 
+import com.vadkutsen.juniorcoders.enums.PlansEnum;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -18,6 +20,11 @@ public class Plan implements Serializable {
     /** Default constructor */
     public Plan() {
 
+    }
+
+    public Plan(PlansEnum plansEnum) {
+        this.id = plansEnum.getId();
+        this.name = plansEnum.getPlanName();
     }
 
     public int getId() {
