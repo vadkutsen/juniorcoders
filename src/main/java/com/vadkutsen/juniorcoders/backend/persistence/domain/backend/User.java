@@ -12,6 +12,7 @@ import java.util.Set;
 
 
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"username", "email"})})
 public class User implements Serializable, UserDetails {
 
     /**
@@ -28,12 +29,12 @@ public class User implements Serializable, UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column (unique = true)
+    @Column
     private String username;
 
     private String password;
 
-    @Column (unique = true)
+    @Column
     private String email;
 
     @Column(name = "first_name")
