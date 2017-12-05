@@ -27,16 +27,8 @@ import java.util.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = JuniorcodersApplication.class)
-public class RepositoriesIntegrationTest {
+public class UserIntegrationTest extends AbstractIntegrationTest {
 
-    @Autowired
-    private PlanRepository planRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private RoleRepository roleRepository;
 
     private static final int BASIC_PLAN_ID = 1;
 
@@ -88,7 +80,7 @@ public class RepositoriesIntegrationTest {
 
     }
 
-    /**@Test
+    @Test
     public void testDeleteUser() throws Exception {
 
         String username = testName.getMethodName();
@@ -96,38 +88,6 @@ public class RepositoriesIntegrationTest {
 
         User basicUser = createUser(username, email);
         userRepository.delete(basicUser.getId());
-    }*/
-
-
-    //-----------> Private methods
-
-    private Plan createPlan(PlansEnum plansEnum) {
-        return new Plan(plansEnum);
-    }
-
-    private Role createRole(RolesEnum rolesEnum) {
-        return new Role(rolesEnum);
-    }
-
-    private User createUser(String username, String email) {
-        Plan basicPlan = createPlan(PlansEnum.BASIC);
-        planRepository.save(basicPlan);
-
-        User basicUser = UserUtils.createBasicUser(username, email);
-        basicUser.setPlan(basicPlan);
-
-        Role basicRole = createRole(RolesEnum.BASIC);
-        roleRepository.save(basicRole);
-
-        Set<UserRole> userRoles = new HashSet<>();
-        UserRole userRole = new UserRole(basicUser, basicRole);
-        userRoles.add(userRole);
-
-        basicUser.getUserRoles().addAll(userRoles);
-        basicUser = userRepository.save(basicUser);
-        return basicUser;
-
-
     }
 
 }
