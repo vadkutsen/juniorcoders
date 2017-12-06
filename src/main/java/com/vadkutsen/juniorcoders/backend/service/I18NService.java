@@ -1,4 +1,4 @@
-package com.vadkutsen.juniorcoders.web.i18n;
+package com.vadkutsen.juniorcoders.backend.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

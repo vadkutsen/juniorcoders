@@ -1,6 +1,7 @@
 package com.vadkutsen.juniorcoders.config;
 
 import com.vadkutsen.juniorcoders.backend.service.UserSecurityService;
+import com.vadkutsen.juniorcoders.web.controllers.ForgotMyPassswordController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,14 +36,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /** Public URLs */
     private static final String[] PUBLIC_MATCHERS = {
-        "/webjars/**",
-        "/css/**",
-        "/js/**",
-        "/images/**",
-        "/",
-        "/about/**",
-        "/contact/**",
-            "/console/**"
+            "/webjars/**",
+            "/css/**",
+            "/js/**",
+            "/images/**",
+            "/",
+            "/about/**",
+            "/contact/**",
+            "/console/**",
+            ForgotMyPassswordController.FORGOT_PASSWORD_URL_MAPPING
     };
 
     @Override

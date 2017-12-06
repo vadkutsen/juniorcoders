@@ -1,6 +1,10 @@
 package com.vadkutsen.juniorcoders.utils;
 
 import com.vadkutsen.juniorcoders.backend.persistence.domain.backend.User;
+import com.vadkutsen.juniorcoders.web.controllers.ForgotMyPassswordController;
+import org.omg.PortableInterceptor.USER_EXCEPTION;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class UserUtils {
 
@@ -31,5 +35,12 @@ public class UserUtils {
         user.setDescription("A basic user");
         user.setProfileImageUrl("https://blabla.inages.com/basicuser");
         return user;
+    }
+
+    public static String createPasswordResetUrl(HttpServletRequest request, long userId, String token) {
+        String passwordResetUrl = request.getScheme() + "://" + request.getServerName() + ":"
+                + request.getServerPort() + request.getContextPath() + ForgotMyPassswordController.CHANGE_PASSWORD_PATH
+                + "?id" + userId + "&token=" + token;
+        return passwordResetUrl;
     }
 }

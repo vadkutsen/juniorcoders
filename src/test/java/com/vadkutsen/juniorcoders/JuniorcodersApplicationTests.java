@@ -1,6 +1,6 @@
 package com.vadkutsen.juniorcoders;
 
-import com.vadkutsen.juniorcoders.web.i18n.I18NService;
+import com.vadkutsen.juniorcoders.backend.service.I18NService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
