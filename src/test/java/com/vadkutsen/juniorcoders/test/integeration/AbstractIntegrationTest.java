@@ -1,18 +1,17 @@
 package com.vadkutsen.juniorcoders.test.integeration;
 
-import com.vadkutsen.juniorcoders.backend.persistence.domain.backend.Plan;
-import com.vadkutsen.juniorcoders.backend.persistence.domain.backend.Role;
-import com.vadkutsen.juniorcoders.backend.persistence.domain.backend.User;
-import com.vadkutsen.juniorcoders.backend.persistence.domain.backend.UserRole;
+import com.vadkutsen.juniorcoders.backend.persistence.domain.backend.*;
 import com.vadkutsen.juniorcoders.backend.persistence.repositories.PlanRepository;
 import com.vadkutsen.juniorcoders.backend.persistence.repositories.RoleRepository;
 import com.vadkutsen.juniorcoders.backend.persistence.repositories.UserRepository;
 import com.vadkutsen.juniorcoders.enums.PlansEnum;
 import com.vadkutsen.juniorcoders.enums.RolesEnum;
 import com.vadkutsen.juniorcoders.utils.UserUtils;
+import org.junit.Assert;
 import org.junit.rules.TestName;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
