@@ -56,7 +56,7 @@ public class PasswordResetToken implements Serializable {
             throw new IllegalArgumentException("token, user and creation date time can't be null");
         }
         if (expirationInMinutes == 0) {
-            LOG.warn("the token expitation length in minutes is zero. Assigning the default value {}", DEFAULT_TOKEN_LENGTH_IN_MINUTES);
+            LOG.warn("the token expiration length in minutes is zero. Assigning the default value {}", DEFAULT_TOKEN_LENGTH_IN_MINUTES);
             expirationInMinutes = DEFAULT_TOKEN_LENGTH_IN_MINUTES;
         }
         this.token = token;

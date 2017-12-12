@@ -2,7 +2,6 @@ package com.vadkutsen.juniorcoders.utils;
 
 import com.vadkutsen.juniorcoders.backend.persistence.domain.backend.User;
 import com.vadkutsen.juniorcoders.web.controllers.ForgotMyPassswordController;
-import org.omg.PortableInterceptor.USER_EXCEPTION;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -40,7 +39,7 @@ public class UserUtils {
     public static String createPasswordResetUrl(HttpServletRequest request, long userId, String token) {
         String passwordResetUrl = request.getScheme() + "://" + request.getServerName() + ":"
                 + request.getServerPort() + request.getContextPath() + ForgotMyPassswordController.CHANGE_PASSWORD_PATH
-                + "?id" + userId + "&token=" + token;
+                + "?id=" + userId + "&token=" + token;
         return passwordResetUrl;
     }
 }
