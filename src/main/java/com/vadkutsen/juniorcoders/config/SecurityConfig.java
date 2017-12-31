@@ -2,6 +2,7 @@ package com.vadkutsen.juniorcoders.config;
 
 import com.vadkutsen.juniorcoders.backend.service.UserSecurityService;
 import com.vadkutsen.juniorcoders.web.controllers.ForgotMyPassswordController;
+import com.vadkutsen.juniorcoders.web.controllers.SignupController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,7 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/contact/**",
             "/console/**",
             ForgotMyPassswordController.FORGOT_PASSWORD_URL_MAPPING,
-            ForgotMyPassswordController.CHANGE_PASSWORD_PATH
+            ForgotMyPassswordController.CHANGE_PASSWORD_PATH,
+            SignupController.SIGNUP_URL_MAPPING
     };
 
     @Override
