@@ -1,4 +1,4 @@
-package com.vadkutsen.juniorcoders.test.integeration;
+package com.vadkutsen.juniorcoders.test.integration;
 
 import com.vadkutsen.juniorcoders.JuniorcodersApplication;
 import com.vadkutsen.juniorcoders.backend.persistence.domain.backend.PasswordResetToken;

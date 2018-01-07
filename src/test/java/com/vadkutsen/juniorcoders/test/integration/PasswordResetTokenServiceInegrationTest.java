@@ -1,9 +1,8 @@
-package com.vadkutsen.juniorcoders.test.integeration;
+package com.vadkutsen.juniorcoders.test.integration;
 
 import com.vadkutsen.juniorcoders.JuniorcodersApplication;
 import com.vadkutsen.juniorcoders.backend.persistence.domain.backend.PasswordResetToken;
 import com.vadkutsen.juniorcoders.backend.persistence.domain.backend.User;
-import com.vadkutsen.juniorcoders.backend.persistence.repositories.PasswordResetTokenRepository;
 import com.vadkutsen.juniorcoders.backend.service.PasswordResetTokenService;
 import org.junit.Assert;
 import org.junit.Rule;

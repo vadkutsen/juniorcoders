@@ -11,5 +11,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EntityScan(basePackages = "com.vadkutsen.juniorcoders.backend.persistence.domain.backend")
 @EnableTransactionManagement
 @PropertySource("file:///${user.home}/spring/application-common.properties")
+@PropertySource("file:///${user.home}/spring/stripe.properties")
 public class ApplicationConfig {
 }
