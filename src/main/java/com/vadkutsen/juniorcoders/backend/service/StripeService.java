@@ -31,19 +31,19 @@ public class StripeService {
             stripeCustomerId = customer.getId();
         } catch(AuthenticationException e) {
             LOG.error("An Authentiction exception occurred while creating the Stripe customer", e);
-            throw new com.vadkutsen.juniorcoders.exceptions.StripeException();
+            throw new com.vadkutsen.juniorcoders.exceptions.StripeException(e);
         } catch(InvalidRequestException e) {
             LOG.error("An Invald Request exception occurred while creating the Stripe customer", e);
-            throw new com.vadkutsen.juniorcoders.exceptions.StripeException();
+            throw new com.vadkutsen.juniorcoders.exceptions.StripeException(e);
         } catch(APIConnectionException e) {
             LOG.error("An API Connection exception occurred while creating the Stripe customer", e);
-            throw new com.vadkutsen.juniorcoders.exceptions.StripeException();
+            throw new com.vadkutsen.juniorcoders.exceptions.StripeException(e);
         } catch(CardException e) {
             LOG.error("A Card exception occurred while creating the Stripe customer", e);
-            throw new com.vadkutsen.juniorcoders.exceptions.StripeException();
+            throw new com.vadkutsen.juniorcoders.exceptions.StripeException(e);
         } catch(APIException e) {
             LOG.error("An API exception occurred while creating the Stripe customer", e);
-            throw new com.vadkutsen.juniorcoders.exceptions.StripeException();
+            throw new com.vadkutsen.juniorcoders.exceptions.StripeException(e);
         }
         return stripeCustomerId;
     }

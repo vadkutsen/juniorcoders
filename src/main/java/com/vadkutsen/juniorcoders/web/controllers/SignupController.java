@@ -9,6 +9,8 @@ import com.vadkutsen.juniorcoders.backend.service.StripeService;
 import com.vadkutsen.juniorcoders.backend.service.UserService;
 import com.vadkutsen.juniorcoders.enums.PlansEnum;
 import com.vadkutsen.juniorcoders.enums.RolesEnum;
+import com.vadkutsen.juniorcoders.exceptions.S3Exception;
+import com.vadkutsen.juniorcoders.exceptions.StripeException;
 import com.vadkutsen.juniorcoders.utils.StripeUtils;
 import com.vadkutsen.juniorcoders.utils.UserUtils;
 import com.vadkutsen.juniorcoders.web.domain.frontend.BasicAccountPayload;
@@ -22,15 +24,16 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.Multipart;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.time.Clock;
+import java.time.LocalDate;
 import java.util.*;
 
 @Controller
@@ -64,6 +67,8 @@ public class    SignupController {
     public static final String SIGNED_UP_MESSAGE_KEY = "signedUp";
 
     public static final String ERROR_MESSAGE_KEY = "message";
+
+    public static final String GENERIC_ERROR_VIEW_NAME = "error/genericError";
 
     @RequestMapping(value = SIGNUP_URL_MAPPING, method = RequestMethod.GET)
     public String signupGet(@RequestParam("planId") int planId, ModelMap model) {
@@ -194,6 +199,17 @@ public class    SignupController {
         model.addAttribute(SIGNED_UP_MESSAGE_KEY, "true");
 
         return SUBSCRIPTION_VIEW_NAME;
+    }
+    @ExceptionHandler({StripeException.class, S3Exception.class})
+    public ModelAndView signupException(HttpServletRequest request, Exception exception) {
+        LOG.error("Request {} raised exception {}", request.getRequestURL(), exception);
+
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("exception", exception);
+        mav.addObject("url", request.getRequestURL());
+        mav.addObject("timestamp", LocalDate.now(Clock.systemUTC()));
+        mav.setViewName(GENERIC_ERROR_VIEW_NAME);
+        return mav;
     }
 
 

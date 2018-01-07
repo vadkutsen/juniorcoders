@@ -5,6 +5,7 @@ import com.stripe.model.Customer;
 import com.vadkutsen.juniorcoders.JuniorcodersApplication;
 import com.vadkutsen.juniorcoders.backend.service.StripeService;
 import com.vadkutsen.juniorcoders.enums.PlansEnum;
+import com.vadkutsen.juniorcoders.utils.StripeUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +20,10 @@ import java.time.Clock;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = JuniorcodersApplication.class)
@@ -45,20 +50,21 @@ public class StripeIntegrationTest {
 
     @Test
     public void createStripeCustomer() throws Exception {
-        Map<String, Object> tokenParams = new HashMap<>();
-        Map<String, Object> cardParams = new HashMap<>();
-        cardParams.put("number", TEST_CC_NUMBER);
-        cardParams.put("exp_month", TEST_CC_EXP_MONTH);
-        cardParams.put("exp_year", LocalDate.now(Clock.systemUTC()).getYear() + 1);
-        cardParams.put("cvc", TEST_CC_CVC_NBR);
-        tokenParams.put("card", cardParams);
 
-        Map<String, Object> customerParams = new HashMap<>();
+        Map<String, Object> tokenParams = new HashMap<String, Object>();
+        Map<String, Object> cardParams = new HashMap<String, Object>();
+        cardParams.put(StripeUtils.STRIPE_CARD_NUMBER_KEY, TEST_CC_NUMBER);
+        cardParams.put(StripeUtils.STRIPE_EXPIRY_MONTH_KEY, TEST_CC_EXP_MONTH);
+        cardParams.put(StripeUtils.STRIPE_EXPIRY_YEAR_KEY, LocalDate.now(Clock.systemUTC()).getYear() + 1);
+        cardParams.put(StripeUtils.STRIPE_CVC_KEY, TEST_CC_CVC_NBR);
+        tokenParams.put(StripeUtils.STRIPE_CARD_KEY, cardParams);
+
+        Map<String, Object> customerParams = new HashMap<String, Object>();
         customerParams.put("description", "Customer for test@example.com");
         customerParams.put("plan", PlansEnum.PRO.getId());
 
         String stripeCustomerId = stripeService.createCustomer(tokenParams, customerParams);
-        Assert.assertNotNull(stripeCustomerId);
+        assertThat(stripeCustomerId, is(notNullValue()));
 
         Customer cu = Customer.retrieve(stripeCustomerId);
         cu.delete();
